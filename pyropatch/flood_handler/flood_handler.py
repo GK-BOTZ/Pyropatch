@@ -11,7 +11,7 @@ class Client():
         try:
             return await self.old_invoke(*args, **kwargs)
         except FloodWait as e:
-            await sleep(e.value)
+            await sleep(e.value * 1.2)
             return await self.invoke(*args, **kwargs)
 
     @patchable
@@ -19,7 +19,7 @@ class Client():
         try:
             return await self.old_resolve_peer(*args, **kwargs)
         except FloodWait as e:
-            await sleep(e.value)
+            await sleep(e.value * 1.2)
             return await self.resolve_peer(*args, **kwargs)
 
     @patchable
@@ -27,5 +27,5 @@ class Client():
         try:
             return await self.old_save_file(*args, **kwargs)
         except FloodWait as e:
-            await sleep(e.value)
+            await sleep(e.value * 1.2)
             return await self.save_file(*args, **kwargs)
